@@ -1,0 +1,68 @@
+const projects = [
+  {
+    id: 1,
+    title: 'Figma Design Clone',
+    desc: 'Pixel-perfect recreation of a modern Figma design with responsive layout.',
+    link: 'https://tere-figma-design.netlify.app/',
+    img: '/images/img-1.png',
+    tags: ['HTML', 'CSS'],
+  },
+  {
+    id: 2,
+    title: 'Fight Game',
+    desc: 'An interactive browser-based fighting game with animated characters.',
+    link: 'https://fight-game321.netlify.app/',
+    img: '/images/img-2.png',
+    tags: ['HTML', 'CSS', 'JS'],
+  },
+  {
+    id: 3,
+    title: 'Landing Page',
+    desc: 'Modern responsive landing page with smooth animations and clean layout.',
+    link: 'https://radiant-ganache-316119.netlify.app/',
+    img: '/images/img-3.png',
+    tags: ['HTML', 'CSS', 'JS'],
+  },
+  {
+    id: 4,
+    title: 'OLX Clone',
+    desc: 'Functional clone of the OLX classifieds platform with realistic UI.',
+    link: 'https://olx-clone-layout.netlify.app/',
+    img: '/images/img-4.png',
+    tags: ['HTML', 'CSS'],
+  },
+  {
+    id: 5,
+    title: 'YouTube Clone',
+    desc: 'YouTube homepage clone with grid layout and hover effects.',
+    link: 'https://app.netlify.com/projects/youtubeclone321/overview',
+    img: '/images/img-5.png',
+    tags: ['HTML', 'CSS'],
+  },
+  {
+    id: 6,
+    title: 'Login / Signup Form',
+    desc: 'Stylish authentication forms with validation and smooth transitions.',
+    link: 'https://login-signup-form2.netlify.app/',
+    img: '/images/img-6.png',
+    tags: ['HTML', 'CSS'],
+  },
+  {
+    id: 7,
+    title: 'Portfolio v1',
+    desc: 'First version of personal portfolio showcasing early projects.',
+    link: 'https://radiant-ganache-316119.netlify.app/',
+    img: '/images/img-7.png',
+    tags: ['HTML', 'CSS'],
+  },
+  {
+    id: 8,
+    title: 'Web Project 8',
+    desc: 'Creative web project demonstrating CSS animations and layout skills.',
+    link: 'https://radiant-ganache-316119.netlify.app/',
+    img: '/images/img-8.png',
+    tags: ['HTML', 'CSS'],
+  },
+];
+
+export default projects;
