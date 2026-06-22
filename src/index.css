@@ -142,14 +142,15 @@ section { padding: 100px 5%; position: relative; z-index: 1; }
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
-  text-align: center; margin-bottom: 60px;
+  text-align: center; margin-bottom: 20px;
   color: var(--text); font-weight: 700;
 }
 .section-title span { color: var(--accent); }
 .section-title::after {
   content: ''; display: block; width: 60px; height: 3px;
   background: linear-gradient(90deg, var(--accent), var(--accent2));
-  margin: 12px auto 0; border-radius: 2px;
+  margin: 12px auto 0; 
+  border-radius: 2px;
 }
 
 /* HERO */
@@ -160,6 +161,61 @@ section { padding: 100px 5%; position: relative; z-index: 1; }
   max-width: 1300px; margin: 0 auto;
   padding-left: 5%; padding-right: 5%;
 }
+@media (min-width: 981px) {
+  .hero-section {
+    padding-right: max(5%, 150px);
+    padding-left: 50px;
+  }
+}
+ /* Smaller ring + badges with breathing gap — 191px to 1128px */
+/* @media (min-width: 191px) and (max-width: 1138px) {
+    .hero-section {
+    padding-right: 60px;
+    /* padding-left: 50px; */
+  /* } */ */
+  /* .profile-wrap {
+    width: 220px;
+    height: 220px;
+  }
+
+  .profile-img-wrap {
+    width: 180px;
+    height: 180px;
+  }
+
+  .pulse-ring-item {
+    width: 220px;
+    height: 220px;
+  }
+
+  .skill-float-badge {
+    min-width: 150px;
+    padding: 8px 12px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+
+  .skill-float-badge i {
+    font-size: 1.4rem;
+  }
+
+  .skill-float-title {
+    font-size: 0.82rem;
+  }
+
+  .skill-float-libs {
+    font-size: 0.65rem;
+  }
+
+  .hero-section {
+    gap: 40px;
+  } */
+     /* .hero-content { max-width: 100%; }
+
+     .profile-wrap { width: 250px; height: 250px; }
+  .profile-img-wrap { width: 200px; height: 200px; }
+  .pulse-ring-item { width: 250px; height: 250px; } */
+/* } */
 .hero-content { flex: 1; max-width: 640px; }
 
 .hero-badge {
@@ -221,6 +277,7 @@ section { padding: 100px 5%; position: relative; z-index: 1; }
   background: var(--card); border: 1px solid var(--border);
   color: var(--text2); font-size: 1.1rem;
   transition: all 0.3s ease; text-decoration: none;
+  margin-bottom: 50px;
 }
 .socials a:hover { color: var(--accent); border-color: var(--accent); box-shadow: var(--glow); transform: translateY(-3px); }
 
@@ -264,16 +321,17 @@ section { padding: 100px 5%; position: relative; z-index: 1; }
 }
 @keyframes pulse-ring { 0%{transform:translate(-50%,-50%) scale(1);opacity:0.5} 100%{transform:translate(-50%,-50%) scale(1.5);opacity:0} }
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .hero-section { flex-direction: column; text-align: center; padding-top: calc(var(--header-h) + 60px); padding-bottom: 60px; }
   .hero-content { max-width: 100%; }
   .cta-row { justify-content: center; }
   .socials { justify-content: center; }
   .hero-role { justify-content: center; }
-  .profile-wrap { width: 250px; height: 250px; }
+  /* .profile-wrap { width: 250px; height: 250px; }
   .profile-img-wrap { width: 200px; height: 200px; }
-  .pulse-ring-item { width: 250px; height: 250px; }
+  .pulse-ring-item { width: 250px; height: 250px; } */
 }
+
 
 /* ABOUT */
 /* ABOUT */
@@ -492,6 +550,9 @@ footer {
   flex-wrap: wrap; gap: 24px;
   position: relative; z-index: 1;
 }
+/* .main-footer{
+  margin-top: 20px;
+} */
 .footer-left p { font-size: 0.85rem; color: var(--text2); font-family: var(--font-mono); }
 .footer-left span { color: var(--accent); }
 .footer-socials { display: flex; gap: 12px; }
@@ -789,4 +850,45 @@ body.light-mode .resume-bg .grid-overlay {
   0%, 100% { transform: translate(-50%,-50%) scale(1); }
   33%      { transform: translate(calc(-50% + 30px), calc(-50% - 40px)) scale(1.1); }
   66%      { transform: translate(calc(-50% - 25px), calc(-50% + 25px)) scale(0.9); }
+}
+/* === Ring + Badges fix (191px–1128px) — balanced size === */
+@media (min-width: 191px) and (max-width: 1128px) {
+  .hero-section {
+    gap: 45px !important;           /* slight breathing space */
+  }
+
+  .profile-wrap {
+    width: 280px !important;        /* bara kiya (pehle 220 tha) */
+    height: 280px !important;
+  }
+
+  .profile-img-wrap {
+    width: 230px !important;
+    height: 230px !important;
+  }
+
+  .pulse-ring-item {
+    width: 280px !important;
+    height: 280px !important;
+  }
+
+  /* Ring ke upar wale 3 badges (React, JS, CSS) ki width kam */
+  .skill-float-badge {
+    min-width: 135px !important;    /* width kam kiya */
+    padding: 8px 14px !important;
+    gap: 6px !important;
+    border-radius: 12px;
+  }
+
+  .skill-float-badge i {
+    font-size: 1.45rem !important;
+  }
+
+  .skill-float-title {
+    font-size: 0.85rem !important;
+  }
+
+  .skill-float-libs {
+    font-size: 0.68rem !important;
+  }
 }

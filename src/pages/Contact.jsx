@@ -1,13 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState} from 'react';
 import emailjs from '@emailjs/browser';
 import useReveal from '../components/useReveal';
 import { useToast } from '../components/Toast';
 import './Contact.css';
 
 
-const SERVICE_ID  = 'service_me850xd';
-const TEMPLATE_ID = 'template_1bmn83q';
-const PUBLIC_KEY  = 'MeWoXiLKjJa1QYVSu';
+const SERVICE_ID  = 'service_adpqk9u';
+const TEMPLATE_ID = 'template_010slyi';
+// const PUBLIC_KEY  = 'MeWoXiLKjJa1QYVSu';
+const PUBLIC_KEY = '3tkb6voWk0npgU7hG';
 
 // ─── Validation Rules ────────────────────────────────────────────────────────
 const validate = (name, value) => {
@@ -93,7 +94,17 @@ export default function Contact() {
     // Send via EmailJS
     setSending(true);
     try {
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY);
+  const payload = {
+  name: form.fname,
+  email: form.email,
+  message: form.msg,
+  title: form.topic,
+};
+console.log('Sending:', payload);
+
+await emailjs.send(SERVICE_ID, TEMPLATE_ID, payload, {
+  publicKey: PUBLIC_KEY,
+});
       showToast({
         title: 'Message Sent! 🎉',
         message: `Thanks <b>${form.fname}</b>! I'll reply to <b>${form.email}</b> soon.`,
@@ -105,7 +116,7 @@ export default function Contact() {
     } catch (err) {
       showToast({
         title: 'Failed to Send!',
-        message: 'Something went wrong. Please try again later.',
+        message: err?.message || 'Something went wrong. Please try again.',
         type: 'error',
       });
     } finally {

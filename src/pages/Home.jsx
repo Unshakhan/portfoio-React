@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useReveal from '../components/useReveal';
 
@@ -47,15 +47,15 @@ function useTyping() {
 
 // Floating particles — generated once on mount
 function FloatingParticles() {
-  const particles = useRef(
+  const [particles] = useState(() =>
     Array.from({ length: 50 }, (_, i) => ({
-  id: i,
-  symbol: CODE_SYMBOLS[Math.floor(Math.random() * CODE_SYMBOLS.length)],
-  left: Math.random() * 100,
-  delay: Math.random() * 12,
-  duration: 8 + Math.random() * 10,
-  direction: Math.random() > 0.5 ? 'up' : 'down', // 👈 NEW
-}))
+      id: i,
+      symbol: CODE_SYMBOLS[Math.floor(Math.random() * CODE_SYMBOLS.length)],
+      left: Math.random() * 100,
+      delay: Math.random() * 12,
+      duration: 8 + Math.random() * 10,
+      direction: Math.random() > 0.5 ? 'up' : 'down',
+    }))
   );
 
   return (
@@ -72,12 +72,10 @@ function FloatingParticles() {
   filter: drop-shadow(0 0 6px var(--accent));
 }
 
-/* Bottom → Top */
 .hero-particle.up {
   animation: floatUp linear infinite;
 }
 
-/* Top → Bottom */
 .hero-particle.down {
   animation: floatDown linear infinite;
 }
@@ -128,15 +126,15 @@ function FloatingParticles() {
           zIndex: 0,
         }}
       >
-        {particles.current.map((p) => (
+        {particles.map((p) => (
           <span
             key={p.id}
             className={`hero-particle ${p.direction}`}
-style={{
-  left: `${p.left}%`,
-  animationDelay: `${p.delay}s`,
-  animationDuration: `${p.duration}s`,
-}}
+            style={{
+              left: `${p.left}%`,
+              animationDelay: `${p.delay}s`,
+              animationDuration: `${p.duration}s`,
+            }}
           >
             {p.symbol}
           </span>
@@ -203,12 +201,13 @@ export default function Home() {
             <span className="typing-wrap">{typedText}</span>
           </div>
           <p className="hero-desc">
-            Hi, I&apos;m <b>Unsha Sattar</b>, a passionate{' '}
-            <b>Frontend Developer</b> skilled in <b>HTML</b>, <b>CSS</b>,{' '}
-            <b>JavaScript</b>, and <b>React</b>. I blend creativity with code and
-            also use <b>Photoshop</b> and <b>Illustrator</b> to design modern,
-            responsive websites.
-          </p>
+  Hi, I&apos;m <b>Unsha Sattar</b>, a <b>MERN Stack Developer</b> specializing
+  in building full-stack web applications with <b>React</b>,{' '}
+  <b>Node.js</b>, <b>Express</b>, and <b>MongoDB</b>. I design clean,
+  responsive user interfaces and pair them with scalable backend
+  architecture — handling everything from UI/UX to API development and
+  database integration.
+</p>
           <div className="cta-row">
             <button
               className="btn-glow btn-primary"

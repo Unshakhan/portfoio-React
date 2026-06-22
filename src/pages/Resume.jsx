@@ -13,14 +13,14 @@ const tabContent = {
     title: <>My <span>Experience</span></>,
     items: [
       {
-        title: 'Frontend Developer (Learning)',
-        meta: 'SMIT - Saylani Mass IT Training | 2024 - Present',
-        desc: 'Developing real-world projects including clones, games, and full-stack applications as part of a professional Web and App Development diploma program.',
+        title: 'Digital Product Development Intern',
+        meta: 'Innvelous Tech | Apr 2026 – May 2026',
+        desc: 'Co-developed a full-stack Attendance Management Portal using React.js and Tailwind CSS in an Agile environment. Integrated APIs with Axios and Postman, and engineered responsive teacher timetable interfaces.',
       },
       {
-        title: 'Graphic Designer (Freelance)',
-        meta: 'Self-employed | 2023 - Present',
-        desc: 'Designing logos, social media posts, and UI mockups for clients using Adobe Photoshop and Illustrator.',
+        title: 'Frontend Developer Intern (Remote)',
+        meta: 'Digitech Offerings | Oct 2025 – Dec 2025',
+        desc: 'Built production-ready single-page applications using React.js and React Router. Modernized legacy CSS into utility-first Tailwind CSS, significantly improving mobile experience and UI/UX workflows.',
       },
     ],
   },
@@ -28,14 +28,14 @@ const tabContent = {
     title: <>My <span>Education</span></>,
     items: [
       {
-        title: 'Web and App Development Diploma',
-        meta: 'SMIT - Saylani Mass IT Training | 2024 - Present',
-        desc: 'Comprehensive diploma covering HTML, CSS, JavaScript, React, Bootstrap, Node.js, Express.js, and modern development workflows including Git and Postman.',
+        title: 'Diploma in Web & App Development',
+        meta: 'SMIT - Saylani Mass IT Training | 2024 – Present',
+        desc: 'Intensive training in modern web technologies including HTML5, CSS3, JavaScript, React.js, Node.js, Express.js, MongoDB, and professional development tools like Git and Postman.',
       },
       {
-        title: 'BS Botany (Graduate)',
-        meta: 'University | 2019 - 2023',
-        desc: 'Completed Bachelor of Science in Botany, developing strong analytical and research skills alongside a growing passion for technology.',
+        title: 'BS Botany',
+        meta: 'Federal Urdu University | 2019 – 2022 | CGPA: 3.7',
+        desc: 'Developed strong analytical, research, and problem-solving skills. Transitioned passion for technology into professional web development career.',
       },
     ],
   },
@@ -44,13 +44,18 @@ const tabContent = {
     items: [
       {
         title: 'Frontend Technologies',
-        meta: 'Proficient',
-        desc: 'HTML5 (95%), CSS3 (95%), JavaScript ES6+ (70%), React.js (60%), Bootstrap (90%), Tailwind CSS (65%)',
+        meta: 'Advanced',
+        desc: 'HTML5, CSS3, JavaScript (ES6+), React.js, Redux, React Router, Tailwind CSS, Bootstrap, Responsive Design',
       },
       {
-        title: 'Tools & Backend',
-        meta: 'Intermediate / Learning',
-        desc: 'Git & GitHub (85%), Netlify (95%), Adobe Photoshop (80%), Adobe Illustrator (70%), Postman (65%), Node.js (40%), Express.js (35%)',
+        title: 'Backend & Database',
+        meta: 'Intermediate',
+        desc: 'Node.js, Express.js, MongoDB, Supabase, RESTful APIs, JWT Authentication, bcrypt',
+      },
+      {
+        title: 'Tools & Others',
+        meta: 'Proficient',
+        desc: 'Git & GitHub, Postman, Axios, Figma, Agile/Scrum, Cloudinary, Vercel, Netlify',
       },
     ],
   },
@@ -59,13 +64,13 @@ const tabContent = {
     items: [
       {
         title: 'Who Am I?',
-        meta: 'Frontend Developer & Designer',
-        desc: "I'm a passionate Web and App Development student who loves creating modern, clean, and user-friendly websites. I enjoy learning new technologies and continuously improving my skills to become a well-rounded full-stack developer.",
+        meta: 'Full-Stack Developer (MERN Stack)',
+        desc: "Result-driven Full-Stack Developer specializing in the MERN stack and Supabase. Passionate about building secure, scalable, and user-centric web applications with clean code and modern technologies.",
       },
       {
         title: 'My Goals',
-        meta: '2025 and Beyond',
-        desc: 'To master React and Node.js, build full-stack projects, contribute to open source, and land a professional developer role where I can grow and make an impact.',
+        meta: 'Career Objective',
+        desc: 'To secure a challenging Full-Stack Developer role where I can contribute my technical expertise, deliver high-quality solutions, and continue growing in a dynamic development environment.',
       },
     ],
   },

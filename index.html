@@ -6,9 +6,30 @@
     <title>Unsha Sattar | Frontend Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <style>
+  /* Chatbase widget customization */
+  #chatbase-bubble-button {
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+  
+  #chatbase-bubble-window {
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(235, 9, 9, 0.2) !important;
+    width: 400px !important;
+    height: 360px !important;
+  border: 1.5px solid #1a8c4e73 !important;
+  box-shadow: 0 4px 20px rgba(26, 140, 78, 0.12) !important;
+  }
+</style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="yUjOV6-FhH73z_i9Bwm6L";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
   </body>
 </html>

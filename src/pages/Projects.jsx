@@ -1,19 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useReveal from '../components/useReveal';
 import projectsData from '../data/projects';
-import './Projects.css'; // ← yeh file banayein (neeche CSS hai)
+import './Projects.css';
+
+const SLIDE_INTERVAL = 4000;
 
 export default function Projects() {
-  const [liked, setLiked] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(null);
   useReveal();
 
-  const toggleLike = (id) => {
-    setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
+  const total = projectsData.length;
+  const current = projectsData[currentIndex];
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCurrentIndex((prev) => {
+        setPrevIndex(prev);
+        return (prev + 1) % total;
+      });
+    }, SLIDE_INTERVAL);
+
+    return () => clearInterval(id);
+  }, [total]);
 
   return (
     <section className="projects-section">
-      {/* 🟢 Layer 1: Animated blob gradient background */}
       <div className="projects-bg" aria-hidden="true">
         <div className="blob blob-1"></div>
         <div className="blob blob-2"></div>
@@ -22,58 +34,83 @@ export default function Projects() {
         <div className="grid-overlay"></div>
       </div>
 
-      {/* 🫧 Bubbles global #particles se aayengi (peeche se) */}
-
-      {/* 📄 Content */}
       <h2 className="section-title reveal">
         Latest <span>Projects</span>
       </h2>
-      <div className="projects-grid">
-        {projectsData.map((p) => (
-          <div key={p.id} className="project-card reveal">
-            <a href={p.link} target="_blank" rel="noopener noreferrer">
-              <img
-                className="project-img"
-                src={p.img}
-                alt={p.title}
-                onError={(e) => {
-                  e.target.src = `https://via.placeholder.com/300x180/111c2d/39ff9f?text=${encodeURIComponent(p.title)}`;
-                }}
-              />
-            </a>
-            <div className="project-body">
-              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: 'var(--text)', marginBottom: '8px' }}>
-                {p.title}
-              </h4>
-              <p>{p.desc}</p>
-              <div className="project-footer">
-                <div className="tech-tags">
-                  {p.tags.map((tag) => (
-                    <span key={tag} className="tech-tag">{tag}</span>
-                  ))}
-                </div>
-                <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                  <button
-                    className={`heart-btn${liked[p.id] ? ' liked' : ''}`}
-                    onClick={() => toggleLike(p.id)}
-                    aria-label="Like"
-                  >
-                    <i className={liked[p.id] ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}></i>
-                  </button>
-                  <a
-                    href={p.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link"
-                    title="Visit"
-                  >
-                    <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                  </a>
+
+      <div className="projects-slider reveal">
+        <div className="projects-detail" key={currentIndex}>
+          <span className="projects-detail-count">
+            {String(currentIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          </span>
+          <h3 className="projects-detail-title">{current.title}</h3>
+          <p className="projects-detail-desc">{current.desc}</p>
+          <div className="projects-detail-tags">
+            {current.tags.map((tag) => (
+              <span key={tag} className="tech-tag">{tag}</span>
+            ))}
+          </div>
+          <a href={current.link} target="_blank" rel="noopener noreferrer" className="projects-visit-link tech-tag">
+            Visit Project <i className="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+
+        <div className="projects-image-stage">
+          {projectsData.map((p, i) => {
+            let cls = 'projects-slide';
+            if (i === currentIndex) cls += ' active';
+            else if (i === prevIndex) cls += ' exit';
+
+            return (
+              <div key={p.id} className={cls}>
+                <div className="device-mockup">
+
+                  {/* Laptop — center */}
+                  <div className="device device-laptop">
+                    <div className="device-screen">
+                      <img
+                        src={p.img}
+                        alt={p.title}
+                        onError={(e) => {
+                          e.target.src = `https://via.placeholder.com/560x340/111c2d/39ff9f?text=${encodeURIComponent(p.title)}`;
+                        }}
+                      />
+                    </div>
+                    <div className="device-laptop-base"></div>
+                    <div className="device-shadow device-shadow-laptop"></div>
+                    <div className="device-reflection device-reflection-laptop">
+                      <img src={p.img} alt="" aria-hidden="true" />
+                    </div>
+                  </div>
+
+                  {/* Tablet — corner, lower */}
+                  <div className="device device-tablet">
+                    <div className="device-screen">
+                      <img src={p.img2} alt={`${p.title} tablet view`} />
+                    </div>
+                    <div className="device-shadow device-shadow-tablet"></div>
+                    <div className="device-reflection device-reflection-tablet">
+                      <img src={p.img2} alt="" aria-hidden="true" />
+                    </div>
+                  </div>
+
+                  {/* Phone — corner, lower */}
+                  <div className="device device-phone">
+                    <div className="device-screen">
+                      <img src={p.img1} alt={`${p.title} mobile view`} />
+                    </div>
+                    <div className="device-shadow device-shadow-phone"></div>
+                    <div className="device-reflection device-reflection-phone">
+                      <img src={p.img1} alt="" aria-hidden="true" />
+                    </div>
+                  </div>
+
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
+            );
+          })}
+          <div className="glass-shelf-line"></div>
+        </div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer>
+    <footer className="main-footer">
       <div className="footer-left">
         <p>
           Copyright &copy; 2025 <span>Unsha Sattar</span>. All rights reserved.

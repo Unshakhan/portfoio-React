@@ -1,21 +1,22 @@
+// import { useEffect } from 'react';
 import useReveal from '../components/useReveal';
-import './About.css'; // create this file with the CSS below
+import './About.css';
 
 const services = [
   {
     icon: 'fa-solid fa-code',
-    title: 'Web Development',
-    desc: 'Building responsive, modern web applications using HTML, CSS, JavaScript, React, Bootstrap, and Node.js. I craft clean, performant, and accessible interfaces.',
+    title: 'Full-Stack Web Development',
+    desc: 'Specialized in building complete MERN stack applications (MongoDB, Express, React, Node.js) with secure authentication (JWT, bcrypt), RESTful APIs, and seamless deployment. Experienced in delivering production-ready web solutions from concept to deployment.',
   },
   {
     icon: 'fa-solid fa-palette',
-    title: 'Graphic Designing',
-    desc: 'Creative visual design using Adobe Photoshop and Illustrator. I design UI mockups, social media graphics, and brand assets that communicate clearly.',
+    title: 'Modern Frontend Development',
+    desc: 'Expert in creating responsive, high-performance user interfaces using React.js, Tailwind CSS, and modern JavaScript. Proven track record of transforming legacy designs into clean, mobile-optimized, and visually appealing web experiences.',
   },
   {
     icon: 'fa-solid fa-server',
-    title: 'Backend Basics',
-    desc: 'Currently learning Express.js and Node.js to build REST APIs and server-side logic. Comfortable using Postman for API testing and documentation.',
+    title: 'Backend & Database Solutions',
+    desc: 'Developing robust backend systems with Node.js, Express.js, Supabase, and MongoDB. Skilled in building secure APIs, implementing authentication flows, and managing data operations to ensure scalable and efficient applications.',
   },
 ];
 
