@@ -19,6 +19,11 @@
   --font-mono: 'Space Mono', monospace;
   --header-h: 75px;
 }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  zoom: 125%;   /* ye line add ki */
+}
 
 body.light-mode {
   --bg: #f0f7f0;
@@ -35,7 +40,6 @@ body.light-mode {
    --text1: #1a2030;
 }
 
-html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
   background-color: var(--bg);
@@ -809,7 +813,7 @@ body.light-mode .resume-bg .grid-overlay {
 /* === Ring + Badges fix (191px–1128px) — balanced size === */
 @media (min-width: 191px) and (max-width: 1128px) {
   .hero-section {
-    gap: 45px !important;           /* slight breathing space */
+    gap: 70px !important;           /* slight breathing space */
   }
 
   .profile-wrap {
@@ -834,7 +838,10 @@ body.light-mode .resume-bg .grid-overlay {
     gap: 6px !important;
     border-radius: 12px;
   }
-
+/* CSS & Design badge left ki taraf bahar nikal kar text se overlap kar raha tha */
+  .badge-css {
+    left: -8% !important;
+  }
   .skill-float-badge i {
     font-size: 1.45rem !important;
   }

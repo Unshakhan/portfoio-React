@@ -153,6 +153,7 @@ const badges = [
     libs: 'Hooks, Router, Redux',
     style: { top: '2%', right: '-18%' },
     delay: '0s',
+    extraClass: 'badge-react',
   },
   {
     icon: 'fa-brands fa-js',
@@ -160,6 +161,7 @@ const badges = [
     libs: 'ES6+, DOM, APIs',
     style: { bottom: '18%', right: '-22%' },
     delay: '1s',
+    extraClass: 'badge-js',
   },
   {
     icon: 'fa-brands fa-css3-alt',
@@ -167,6 +169,7 @@ const badges = [
     libs: 'Flexbox, Grid, GSAP',
     style: { top: '42%', left: '-24%' },
     delay: '2s',
+    extraClass: 'badge-css',
   },
 ];
 
@@ -277,7 +280,7 @@ const goTo = (sectionId) => {
           {badges.map((badge) => (
             <div
               key={badge.label}
-              className="skill-float-badge"
+              className={`skill-float-badge ${badge.extraClass}`}
               style={{ ...badge.style, animationDelay: badge.delay }}
             >
               <i className={badge.icon}></i>
