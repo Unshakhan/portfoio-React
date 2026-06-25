@@ -224,7 +224,8 @@ const goTo = (sectionId) => {
             >
               <i className="fa-solid fa-code"></i> View Projects
             </button> */}
-            <a href="/resume.pdf"
+            <a
+  href="/images/Final-Resume.pdf"
   download="Unsha_Sattar_Resume.pdf"
   className="btn-glow btn-primary"
 >
