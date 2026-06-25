@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Particles from './components/Particles';
@@ -11,19 +10,21 @@ import Resume from './pages/Resume';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function App() {
   const [isLight, setIsLight] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     document.body.classList.toggle('light-mode', isLight);
   }, [isLight]);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location.pathname]);
-
+useEffect(() => {
+  AOS.init({
+    duration: 1000,
+    once: true,
+  });
+}, []);
   const toggleTheme = () => setIsLight((v) => !v);
 
   return (
@@ -31,14 +32,12 @@ export default function App() {
       <Particles />
       <Header isLight={isLight} toggleTheme={toggleTheme} />
       <main style={{ position: 'relative', zIndex: 1 }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <Home />
+        <About />
+        <Skills />
+        <Resume />
+        <Projects />
+        <Contact />
       </main>
       <Footer />
       <BackToTop />

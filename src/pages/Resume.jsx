@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useReveal from '../components/useReveal';
+import AOS from 'aos';   // ← Add kiya
 
 const tabs = [
   { key: 'experience', icon: 'fa-solid fa-briefcase', label: 'Experience' },
@@ -80,11 +81,16 @@ export default function Resume() {
   const [activeTab, setActiveTab] = useState('experience');
   useReveal();
 
+  // ←←← Naya AOS refresh (tab change pe animation dobara chal sake)
+  useEffect(() => {
+    AOS.refresh();
+  }, [activeTab]);
+
   const content = tabContent[activeTab];
 
   return (
-    <section className="resume-section">
-      {/* 🟢 Layer 1: Animated blob gradient background (sabse peeche) */}
+    <section className="resume-section" id="resume">
+      {/* 🟢 Layer 1: Animated blob gradient background */}
       <div className="resume-bg" aria-hidden="true">
         <div className="blob blob-1"></div>
         <div className="blob blob-2"></div>
@@ -94,12 +100,21 @@ export default function Resume() {
       </div>
 
       {/* 📄 Layer 2: Resume content */}
-      <h2 className="section-title reveal">
+      <h2 
+        className="section-title reveal" 
+        data-aos="fade-up"
+        data-aos-duration="800"
+      >
         Why <span>Hire Me?</span>
       </h2>
 
       <div className="resume-grid">
-        <div className="resume-sidebar reveal">
+        {/* Sidebar */}
+        <div 
+          className="resume-sidebar reveal" 
+          data-aos="fade-right"
+          data-aos-duration="900"
+        >
           <h2>About</h2>
           <span>Me</span>
           <p>
@@ -108,11 +123,14 @@ export default function Resume() {
             quality work and continuously grow.
           </p>
           <div className="resume-tabs">
-            {tabs.map((t) => (
+            {tabs.map((t, index) => (
               <button
                 key={t.key}
                 className={`tab-btn${activeTab === t.key ? ' active' : ''}`}
                 onClick={() => setActiveTab(t.key)}
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+                data-aos-duration="600"
               >
                 <i className={t.icon}></i> {t.label}
               </button>
@@ -120,11 +138,26 @@ export default function Resume() {
           </div>
         </div>
 
-        <div className="reveal">
+        {/* Content Area */}
+        <div 
+          className="reveal"
+          data-aos="fade-left"
+          data-aos-duration="900"
+          data-aos-delay="200"
+        >
           <div className="tab-content active">
-            <h3>{content.title}</h3>
-            {content.items.map((item) => (
-              <div key={item.title} className="timeline-item">
+            <h3 data-aos="fade-up" data-aos-duration="700">
+              {content.title}
+            </h3>
+            
+            {content.items.map((item, index) => (
+              <div 
+                key={item.title} 
+                className="timeline-item"
+                data-aos="fade-up"
+                data-aos-delay={index * 150}
+                data-aos-duration="700"
+              >
                 <h4>{item.title}</h4>
                 <div className="meta">{item.meta}</div>
                 <p>{item.desc}</p>

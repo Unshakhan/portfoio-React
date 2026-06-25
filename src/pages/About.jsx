@@ -1,6 +1,8 @@
 // import { useEffect } from 'react';
 import useReveal from '../components/useReveal';
 import './About.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const services = [
   {
@@ -22,9 +24,14 @@ const services = [
 
 export default function About() {
   useReveal();
-
+//  useEffect(() => {
+//     AOS.init({
+//       duration: 1000,
+//       once: true,
+//     });
+//   }, []);
   return (
-    <section className="about-section">
+    <section className="about-section" id="about">
       {/* Animated green blob gradient background */}
       <div className="about-bg" aria-hidden="true">
         <div className="blob blob-1"></div>
@@ -36,20 +43,25 @@ export default function About() {
 
       <div className="about-check-deco" aria-hidden="true"></div>
 
-      <h2 className="section-title reveal">
-        My <span>Services</span>
-      </h2>
+     <h2 className="section-title reveal" data-aos="fade-up">
+  My <span>Services</span>
+</h2>
 
       <div className="services-grid">
-        {services.map((s) => (
-          <div key={s.title} className="service-card reveal">
-            <div className="service-icon">
-              <i className={s.icon}></i>
-            </div>
-            <h3>{s.title}</h3>
-            <p>{s.desc}</p>
-          </div>
-        ))}
+       {services.map((s, index) => (
+  <div
+    key={s.title}
+    className="service-card reveal"
+    data-aos="fade-up"
+    data-aos-delay={index * 150}
+  >
+    <div className="service-icon">
+      <i className={s.icon}></i>
+    </div>
+    <h3>{s.title}</h3>
+    <p>{s.desc}</p>
+  </div>
+))}
       </div>
     </section>
   );

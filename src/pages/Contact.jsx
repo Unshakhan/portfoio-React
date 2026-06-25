@@ -2,6 +2,7 @@ import { useState} from 'react';
 import emailjs from '@emailjs/browser';
 import useReveal from '../components/useReveal';
 import { useToast } from '../components/Toast';
+import confetti from "canvas-confetti";
 import './Contact.css';
 
 
@@ -52,6 +53,42 @@ export default function Contact() {
   const showToast = useToast();
   useReveal();
 
+const fireConfetti = () => {
+  const duration = 3000;
+  const end = Date.now() + duration;
+
+  const colors = [
+    '#ff0080',
+    '#7928ca',
+    '#00d4ff',
+    '#ffd700',
+    '#ffffff',
+  ];
+
+  const frame = () => {
+    confetti({
+      particleCount: 4,
+      angle: 60,
+      spread: 70,
+      origin: { x: 0, y: 0.7 },
+      colors,
+    });
+
+    confetti({
+      particleCount: 4,
+      angle: 120,
+      spread: 70,
+      origin: { x: 1, y: 0.7 },
+      colors,
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  };
+
+  frame();
+};
   // ─── Handlers ──────────────────────────────────────────────────────────────
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -105,6 +142,7 @@ console.log('Sending:', payload);
 await emailjs.send(SERVICE_ID, TEMPLATE_ID, payload, {
   publicKey: PUBLIC_KEY,
 });
+fireConfetti();
       showToast({
         title: 'Message Sent! 🎉',
         message: `Thanks <b>${form.fname}</b>! I'll reply to <b>${form.email}</b> soon.`,
@@ -133,7 +171,7 @@ await emailjs.send(SERVICE_ID, TEMPLATE_ID, payload, {
   ];
 
   return (
-    <section className="contact-section">
+    <section className="contact-section" id="contact">
        <div className="contact-bg" aria-hidden="true">
     <div className="blob blob-1"></div>
     <div className="blob blob-2"></div>
@@ -141,13 +179,14 @@ await emailjs.send(SERVICE_ID, TEMPLATE_ID, payload, {
     <div className="blob blob-4"></div>
     <div className="grid-overlay"></div>
   </div>
-      <h2 className="section-title reveal">
-        Get In <span>Touch</span>
-      </h2>
+      <h2 className="section-title reveal" data-aos="fade-up">
+  Get In <span>Touch</span>
+</h2>
 
       <div className="contact-grid">
         {/* ── Info Side ── */}
-        <div className="contact-info reveal">
+        <div className="contact-info reveal" data-aos="fade-right" data-aos-duration="900">
+
           <h2>
             Let&apos;s <span>Work Together</span>
           </h2>
@@ -175,7 +214,7 @@ await emailjs.send(SERVICE_ID, TEMPLATE_ID, payload, {
         </div>
 
         {/* ── Form Side ── */}
-        <div className="contact-form-box reveal">
+<div className="contact-form-box reveal" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
           <h3>
             Send Me a <span>Message</span>
           </h3>

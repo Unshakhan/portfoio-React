@@ -25,7 +25,7 @@ export default function Projects() {
   }, [total]);
 
   return (
-    <section className="projects-section">
+    <section className="projects-section" id='projects'>
       <div className="projects-bg" aria-hidden="true">
         <div className="blob blob-1"></div>
         <div className="blob blob-2"></div>

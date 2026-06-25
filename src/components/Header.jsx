@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link } from 'react-scroll';
 
 const navLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Resume', to: '/resume' },
-  { label: 'Projects', to: '/projects' },
-  { label: 'Skills', to: '/skills' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Home', to: 'home' },
+  { label: 'About', to: 'about' },
+  { label: 'Resume', to: 'resume' },
+  { label: 'Projects', to: 'projects' },
+  { label: 'Skills', to: 'skills' },
+  { label: 'Contact', to: 'contact' },
 ];
 
 export default function Header({ isLight, toggleTheme }) {
   const [navOpen, setNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -21,22 +20,22 @@ export default function Header({ isLight, toggleTheme }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleNavClick = (to) => {
-    setNavOpen(false);
-    navigate(to);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const closeNav = () => setNavOpen(false);
 
   return (
     <header style={{ boxShadow: scrolled ? '0 4px 30px rgba(0,0,0,0.3)' : 'none' }}>
-      <a
-        href="/"
+      <Link
+        to="home"
+        smooth={true}
+        duration={500}
+        offset={-80}
         className="logo"
-        onClick={(e) => { e.preventDefault(); handleNavClick('/'); }}
+        style={{ cursor: 'pointer' }}
+        onClick={closeNav}
       >
         <i className="fa-solid fa-code logo-icon"></i>
         <span className="logo-text">My Portfolio</span>
-      </a>
+      </Link>
 
       <button
         className="hamburger"
@@ -52,14 +51,18 @@ export default function Header({ isLight, toggleTheme }) {
         <ul>
           {navLinks.map((link) => (
             <li key={link.to}>
-              <NavLink
+              <Link
                 to={link.to}
-                className={({ isActive }) => (isActive ? 'active-link' : '')}
-                onClick={() => handleNavClick(link.to)}
-                end={link.to === '/'}
+                smooth={true}
+                duration={500}
+                offset={-80}
+                spy={true}
+                activeClass="active-link"
+                onClick={closeNav}
+                style={{ cursor: 'pointer' }}
               >
                 {link.label}
-              </NavLink>
+              </Link>
             </li>
           ))}
           <li>

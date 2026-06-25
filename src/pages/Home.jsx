@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { scroller } from 'react-scroll';
 import useReveal from '../components/useReveal';
 
 const roles = ['Frontend Developer', 'React Developer', 'UI Designer', 'Creative Learner'];
@@ -172,12 +173,20 @@ const badges = [
 export default function Home() {
   useReveal();
   const typedText = useTyping();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const goTo = (path) => {
-    navigate(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // const goTo = (path) => {
+  //   navigate(path);
+  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  // };
+  // YE ADD KARO (iska naam bhi goTo rakh rahi hu taake button wala code same rahe):
+const goTo = (sectionId) => {
+  scroller.scrollTo(sectionId, {
+    smooth: true,
+    duration: 500,
+    offset: -80,
+  });
+};
 
   return (
     // Wrap in a relative container so particles are scoped to hero section
@@ -185,8 +194,8 @@ export default function Home() {
       {/* Floating code symbols background animation */}
       <FloatingParticles />
 
-      <div className="hero-section" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="hero-content reveal">
+      <div className="hero-section" id='home' style={{ position: 'relative', zIndex: 1 }}>
+       <div className="hero-content reveal" data-aos="fade-right" data-aos-duration="900">
           <div className="hero-badge">
             <span className="hero-badge-dot"></span>
             <span>Available for Opportunities</span>
@@ -209,15 +218,21 @@ export default function Home() {
   database integration.
 </p>
           <div className="cta-row">
-            <button
+            {/* <button
               className="btn-glow btn-primary"
               onClick={() => goTo('/projects')}
             >
               <i className="fa-solid fa-code"></i> View Projects
-            </button>
+            </button> */}
+            <a href="/resume.pdf"
+  download="Unsha_Sattar_Resume.pdf"
+  className="btn-glow btn-primary"
+>
+  <i className="fa-solid fa-download"></i> Download Resume
+</a>
             <button
               className="btn-glow btn-outline"
-              onClick={() => goTo('/contact')}
+              onClick={() => goTo('contact')}
             >
               <i className="fa-solid fa-paper-plane"></i> Contact Me
             </button>
@@ -236,7 +251,7 @@ export default function Home() {
         </div>
 
         {/* Profile + Badges */}
-        <div className="profile-wrap reveal">
+<div className="profile-wrap reveal" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
           {/* Rotating rings */}
           <div className="profile-ring"></div>
           <div className="profile-ring r2"></div>

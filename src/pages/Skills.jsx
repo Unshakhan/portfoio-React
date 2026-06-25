@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import './Skills.css'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const defaultSkills = [
   {
     id: 1, category: 'Frontend', items: [
       { id: 11, name: 'React', percent: 95 },
       { id: 12, name: 'TypeScript', percent: 90 },
-      { id: 13, name: 'Next.js', percent: 88 },
+      { id: 13, name: 'CSS', percent: 88 },
       { id: 14, name: 'Tailwind CSS', percent: 92 },
     ]
   },
@@ -15,15 +17,15 @@ const defaultSkills = [
       { id: 21, name: 'Node.js', percent: 85 },
       { id: 22, name: 'Express', percent: 82 },
       { id: 23, name: 'MongoDB', percent: 78 },
-      { id: 24, name: 'PostgreSQL', percent: 72 },
+      { id: 24, name: 'Supabase', percent: 72 },
     ]
   },
   {
     id: 3, category: 'Tools & Others', items: [
       { id: 31, name: 'Git', percent: 95 },
-      { id: 32, name: 'Docker', percent: 70 },
+      { id: 32, name: 'JWT', percent: 70 },
       { id: 33, name: 'Figma', percent: 80 },
-      { id: 34, name: 'AWS', percent: 65 },
+      { id: 34, name: 'Bcrypt', percent: 65 },
     ]
   },
 ];
@@ -127,7 +129,12 @@ function Toast({ msg, type, onClose }) {
 function EditModal({ skill, categoryName, onSave, onClose }) {
   const [name, setName] = useState(skill.name);
   const [pct, setPct] = useState(String(skill.percent));
-
+ useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
   const handleSave = () => {
     const p = parseInt(pct);
     if (!name.trim() || isNaN(p) || p < 1 || p > 100) return;
@@ -381,7 +388,16 @@ export default function Skills() {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
-
+  useEffect(() => {
+  AOS.init({
+    duration: 1000,
+    once: false,
+  });
+}, []);
+  // ←←← Yahan naya useEffect add karo
+  useEffect(() => {
+    AOS.refresh();
+  }, [skills]);
   const addToast = (msg, type = 'success') => {
     const id = Date.now();
     setToasts(prev => [...prev, { id, msg, type }]);
@@ -452,7 +468,7 @@ export default function Skills() {
   `;
 
   return (
-    <section ref={sectionRef}  className="skills-section"  style={{ padding: '100px 5%', position: 'relative', zIndex: 1 }}>
+    <section ref={sectionRef}  className="skills-section" id="skills" style={{ padding: '100px 5%', position: 'relative', zIndex: 1 }}>
        <div className="skills-bg" aria-hidden="true">
       <div className="blob blob-1"></div>
       <div className="blob blob-2"></div>
@@ -481,9 +497,9 @@ export default function Skills() {
       )}
 
       {/* ✅ Section Heading — section-title class without reveal so it stays visible */}
-      <h2 className="section-title">
-        My <span>Skills</span>
-      </h2>
+     <h2 className="section-title" data-aos="fade-up">
+  My <span>Skills</span>
+</h2>
 
       {/* Skills Grid */}
       <div style={{
@@ -493,15 +509,16 @@ export default function Skills() {
         maxWidth: '1200px',
         margin: '0 auto',
       }}>
-        {skills.map(cat => (
-          <CategoryCard
-            key={cat.id}
-            category={cat}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-            animated={animated}
-          />
-        ))}
+       {skills.map((cat, index) => (
+  <div key={cat.id} data-aos="zoom-in" data-aos-delay={index * 150}>
+    <CategoryCard
+      category={cat}
+      onDelete={handleDelete}
+      onEdit={handleEdit}
+      animated={animated}
+    />
+  </div>
+))}
       </div>
 
       {/* Add Skill Row */}
